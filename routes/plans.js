@@ -2,9 +2,8 @@ var express = require("express");
 var router = express.Router();
 var mysql = require("mysql2");
 const db = require("../models/index");
-const User = db.sequelize.models.User;
 const Plan = db.sequelize.models.Plan;
-const PlanOrdered = db.sequelize.models.PlansOrdered;
+const OrderedPlan = db.sequelize.models.OrderedPlan;
 
 
 router.get('/create', function(req,res){
@@ -37,7 +36,7 @@ router.get('/buyplan', async function(req,res){
 
 router.post('/buyplan', async function(req, res){
     console.log(req.query);
-    let ordered = await PlanOrdered.create({
+    let ordered = await OrderedPlan.create({
         UserId: req.query.id,
         PlanId: req.query.plan
     })

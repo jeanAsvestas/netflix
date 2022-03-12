@@ -1,6 +1,7 @@
+//not for rest api
+
 var express = require("express");
 var router = express.Router();
-var mysql = require("mysql2");
 const db = require("../models/index");
 const User = db.sequelize.models.User;
 

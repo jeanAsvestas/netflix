@@ -1,14 +1,11 @@
 var express = require('express');
 var router = express.Router();
+//const auth = require('../middlewaresPassport/authentication');  // passport
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  if (req.query.id){
-    res.render('index', { title: 'Netflix',
-    id:req.query.id  });
-  } else {
-    res.render('indexGuest',{title: 'Netflix'})
-  }
+  //console.log(req) 
+    res.render('indexGuest',{title: 'Netflix'})  
 });
 
 module.exports = router;

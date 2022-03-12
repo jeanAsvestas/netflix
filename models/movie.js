@@ -12,11 +12,17 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Movie.belongsToMany(models.User, { through: models.WatchedMovie });
+      Movie.belongsToMany(models.Category, { through: models.MovieCategory });
+      Movie.belongsToMany(models.CastAndCrew, { through: models.Direct });
+      Movie.belongsToMany(models.CastAndCrew, { through: models.Play });
     }
   }
   Movie.init({
     title: DataTypes.STRING,
     year: DataTypes.INTEGER,
+    description:DataTypes.STRING,
+    length :DataTypes.STRING,
+    prodCountry: DataTypes.STRING,
     path: DataTypes.STRING
   }, {
     sequelize,
