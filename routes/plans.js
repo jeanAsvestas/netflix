@@ -1,6 +1,5 @@
 var express = require("express");
 var router = express.Router();
-var mysql = require("mysql2");
 const db = require("../models/index");
 const Plan = db.sequelize.models.Plan;
 const OrderedPlan = db.sequelize.models.OrderedPlan;

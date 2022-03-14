@@ -16,8 +16,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
-var planRouter = require('./routes/plans')
-var movieRouter = require('./routes/movies');
+var planRouter = require('./routes/plan.routes')
+var movieRouter = require('./routes/movie.routes');
 //var authRouter = require('./routes/auth.routes/auth.routes')
 var authRouter = require ('./routes/auth.routes')
 var userRouter = require ('./routes/user.routes')
@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-//accepts apis requests from this origin.
+//accepts apis requests from this origin.  
 var corsOptions = {
   origin: "http://localhost:3000"
 };
@@ -57,9 +57,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
-app.use('/plan', planRouter);
+app.use('/api/plan', planRouter);
 app.use('/api/movie', movieRouter);
-app.use('/api/user/test', userRouter);
+app.use('/api/user/test', userRouter);  // not active 
 app.use('/api/auth', authRouter);
 
 // catch 404 and forward to error handler

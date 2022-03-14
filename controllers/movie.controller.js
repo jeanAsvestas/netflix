@@ -1,8 +1,6 @@
 const db = require("../models/index");
-const config = require('../config/auth.config');
 const Movie = db.sequelize.models.Movie;
 const WatchedMovie = db.sequelize.models.WatchedMovie
-var jwt = require("jsonwebtoken");
 
 exports.addMovie = (req, res) =>{
     Movie.create({
@@ -20,9 +18,10 @@ exports.addMovie = (req, res) =>{
 }
 
 exports.watchedMovie = (req,res,next) => {
+    console.log(req.userId);
     WatchedMovie.create({
         UserId: req.userId,
-        MovieId: req.body.MovieId
+        MovieId: req.body.movieId
     }).then(watchedmovie => {
         next();
     }).catch(err => {
@@ -33,7 +32,7 @@ exports.watchedMovie = (req,res,next) => {
 exports.moviePath = (req,res) => {
     Movie.findOne({
         where: {
-            id: req.body.MovieId
+            id: req.body.movieId
         }
     }).then(movie => {
         res.status(200).send({path : movie.path})
