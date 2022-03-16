@@ -21,5 +21,15 @@ router.post('/check',
    }
 );
 
+router.post('/update',
+
+
+);
+
+router.post('/delete',
+
+
+);
+
 
 module.exports = router;

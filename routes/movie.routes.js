@@ -2,9 +2,36 @@ var express = require('express');
 var router = express.Router();
 const db = require("../models/index");
 const Movie = db.sequelize.models.Movie;
-const controller = require('../controllers/movie.controller')
-const contr = require('../controllers/plan.controller')
+const movieController = require('../controllers/movie.controller')
+const planController = require('../controllers/plan.controller')
 const authJWT = require('../middlewares/authJWT')
+
+
+
+router.post('/add',
+    authJWT.verifyToken,
+    //authJWT.isAdmin, 
+    movieController.addMovie
+);
+
+router.post('/watch',
+    authJWT.verifyToken,
+    planController.readPlan,
+    movieController.watchedMovie,
+    movieController.moviePath
+);
+
+
+router.post('/update',
+    // authJWT.verifyToken,
+    // authJWT.isAdmin,
+
+);
+
+router.post('/delete',
+
+
+);
 
 
 //not for api use
@@ -14,12 +41,6 @@ router.get('/add', function (req, res) {
     });
 });
 
-router.post('/add',
-    //authJWT.verifyToken,
-    //authJWT.isAdmin, 
-    controller.addMovie
-);
-
 //not for api use
 router.get('/watch', async function (req, res) {
     let movies = await Movie.findAll();
@@ -27,10 +48,5 @@ router.get('/watch', async function (req, res) {
         list: movies
     })
 });
-router.post('/watch',
-    authJWT.verifyToken,
-    contr.readPlan,
-    controller.watchedMovie,
-    controller.moviePath
-);
+
 module.exports = router;

@@ -37,7 +37,7 @@ exports.signin = (req, res) => {
         }
         // return console.log('connected')
         var token = jwt.sign({ id: user.id }, config.secret, {
-            expiresIn: 3600 // 24 hours
+            expiresIn: 3600 // 1 hour
         });   
              
         res.status(200).send
